@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+  apache-process:
+    restart: always
+    build: .
+    environment:
+      - VIRTUAL_HOST=process.ecrituresnumeriques.ca
+      - VIRTUAL_NETWORK=nginx-proxy
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=process.ecrituresnumeriques.ca
+      - LETSENCRYPT_EMAIL=arthur.juchereau@gmail.com
+networks:
+  default:
+    external:
+      name: root_default
