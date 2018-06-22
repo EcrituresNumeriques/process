@@ -6,3 +6,5 @@ services:
     build: .
     ports:
     - "9090:80"
+    environment:
+    - HOME=/usr/local/apache2/cgi-bin
