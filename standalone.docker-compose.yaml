@@ -2,7 +2,6 @@ version: "2"
 
 services:
   apache-process:
-    restart: always
     container_name: ecrinum-process
     build: .
     ports:
