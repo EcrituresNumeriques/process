@@ -56,8 +56,9 @@ zip -r $id.zip .
 mv $id.zip /usr/local/apache2/htdocs/export/ 
 mv $id.md.pdf /usr/local/apache2/htdocs/export/ 
 
-
-ls || echo
+#Clean folder
+cd ..
+rm -R $version
 
 echo "<br>"
 echo "PDF : <a href='/export/${id}.md.pdf' target='_blank'>/export/${id}.md.pdf</a><br>"
