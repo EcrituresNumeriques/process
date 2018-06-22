@@ -56,7 +56,22 @@ echo "<br>"
 
 
 pdflatex $id.md.tex
+cp $id.md.pdf /usr/local/apache2/export/
 mv $id.md.pdf /usr/local/apache2/htdocs/export/ 
+
+mv $id.bib /usr/local/apache2/export/
+mv $id.html  /usr/local/apache2/export/
+mv $id.md  /usr/local/apache2/export/
+mv $id.md.aux  /usr/local/apache2/export/
+mv $id.md.log  /usr/local/apache2/export/
+mv $id.md.out  /usr/local/apache2/export/
+mv $id.md.tex  /usr/local/apache2/export/
+mv $id.yaml  /usr/local/apache2/export/ 
+mv img1.png  /usr/local/apache2/export/
+mv img2.png  /usr/local/apache2/export/
+
+
+
 rm $id.zip
 echo "<br>"
 echo "Cleaned<br>"

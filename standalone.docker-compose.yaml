@@ -8,3 +8,5 @@ services:
     - "9090:80"
     environment:
     - HOME=/usr/local/apache2/cgi-bin
+    volumes:
+     - ./data/:/usr/local/apache2/export/

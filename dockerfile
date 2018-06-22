@@ -7,4 +7,7 @@ COPY ./cgi-bin /usr/local/apache2/cgi-bin
 # Give permission to Daemon to cgi-bin
 RUN chown daemon:daemon -R /usr/local/apache2/cgi-bin
 RUN chown daemon:daemon -R /usr/local/apache2/htdocs/export/
+RUN mkdir /usr/local/apache2/export/
+RUN chown daemon:daemon -R /usr/local/apache2/export/
+RUN ls -l /usr/local/apache2/export/
 
