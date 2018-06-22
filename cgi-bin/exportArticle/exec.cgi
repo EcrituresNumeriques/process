@@ -2,7 +2,7 @@
 
 
 version="5b2bc423e5842b0011ac871a"
-id="SP001"
+id="default"
 export HOME="/usr/local/apache2/cgi-bin"
 
 
@@ -11,6 +11,11 @@ echo ""
 
 echo "<html><head><title>Demo</title></head><body>"
 
+#Assign parameters : exec.cgi?id=SP002&version=5b2be647e5842b0011ac874d
+id=$(echo $QUERY_STRING | sed 's/.*id\=\([^&]\+\).*/\1/')
+version=$(echo $QUERY_STRING | sed 's/.*version\=\([^&]\+\).*/\1/')
+
+echo "<br>Version : ${version} => ${id}<br>"
 mkdir $version
 cd $version
 
@@ -37,9 +42,9 @@ COUNTER=0
 for filename in "media/"*; do
     COUNTER=$[$COUNTER +1]
     echo "${filename%.*}" 
-    sed -i -e "s/${filename%.*}/img${COUNTER}/g" ../$id.md
-    sed -i -e "s/${filename%.*}/img${COUNTER}/g" ../$id.md.tex
-    sed -i -e "s/${filename%.*}/img${COUNTER}/g" ../$id.html
+    sed -i -e "s@${filename%.*}@img${COUNTER}@g" $id.md
+    sed -i -e "s@${filename%.*}@img${COUNTER}@g" $id.md.tex
+    sed -i -e "s@${filename%.*}@img${COUNTER}@g" $id.html
     mv ${filename%.*}.${filename##*.} img${COUNTER}.${filename##*.}
 done
 fi
