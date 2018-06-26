@@ -57,11 +57,11 @@ cp -r ../assets/* ./media
 
 #create PDF
 
-pandoc --standalone --filter pandoc-citeproc --latex-engine=xelatex --template=../templates/templateLaTeX.latex -f markdown -t latex $id.md $id.yaml -o $id.md.pdf
+pandoc --standalone --filter pandoc-citeproc --toc --latex-engine=xelatex --template=../templates/templateLaTeX.latex -f markdown -t latex $id.md $id.yaml -o $id.md.tex
 
 
-#xelatex $id.md.tex
-
+xelatex $id.md.tex
+xelatex $id.md.tex
 
 #Zip all files and move ZIP and PDF to export
 zip -r $id.zip .
