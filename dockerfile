@@ -1,5 +1,5 @@
 FROM httpd:2.4.33
-RUN apt-get update && apt-get install -y curl wget unzip zip rename pandoc pandoc-citeproc texlive texlive-lang-french texlive-latex-extra
+RUN apt-get update && apt-get install -y curl wget unzip zip rename pandoc pandoc-citeproc texlive texlive-lang-french texlive-latex-extra texlive-xetex
 RUN apt-get install -y default-jre
 COPY ./html/ /usr/local/apache2/htdocs/
 COPY ./config/httpd.conf /usr/local/apache2/conf/httpd.conf

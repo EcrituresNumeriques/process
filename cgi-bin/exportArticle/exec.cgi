@@ -28,7 +28,7 @@ rm $id.zip
 rename "s/${version}/${id}/g" *
 sed -i -e "s/\/${version}/${id}/g" $id.yaml
 
-pandoc --standalone --filter pandoc-citeproc --template=../templates/templateLaTeX.latex -f markdown -t latex $id.md $id.yaml -o $id.md.tex
+#pandoc --standalone --filter pandoc-citeproc --latex-engine=xelatex --template=../templates/templateLaTeX.latex -f markdown -t latex $id.md $id.yaml -o $id.md.tex
 
 
 sed -i -e 's/https:\/\/i\.imgur.com\//media\//g' $id.md
@@ -56,7 +56,12 @@ fi
 cp -r ../assets/* ./media
 
 #create PDF
-pdflatex $id.md.tex
+
+pandoc --standalone --filter pandoc-citeproc --latex-engine=xelatex --template=../templates/templateLaTeX.latex -f markdown -t latex $id.md $id.yaml -o $id.md.pdf
+
+
+#xelatex $id.md.tex
+
 
 #Zip all files and move ZIP and PDF to export
 zip -r $id.zip .
