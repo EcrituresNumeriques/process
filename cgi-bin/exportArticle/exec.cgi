@@ -43,9 +43,9 @@ COUNTER=0
 for filename in "$3"*; do
     COUNTER=$[$COUNTER +1]
     echo "${filename%.*}" 
-    sed -i -e "s@${filename%.*}@${id}\-img${COUNTER}@g" $id.md
-    sed -i -e "s@${filename%.*}@${id}\-img${COUNTER}@g" $id.md.tex
-    sed -i -e "s@${filename%.*}@${id}\-img${COUNTER}@g" $id.html
+    sed -i -e "s@${filename%.*}@${id}\-img${COUNTER}@g" ../$id.md
+    sed -i -e "s@${filename%.*}@${id}\-img${COUNTER}@g" ../$id.md.tex
+    sed -i -e "s@${filename%.*}@${id}\-img${COUNTER}@g" ../$id.html
     mv ${filename%.*}.${filename##*.} ${id}-img${COUNTER}.${filename##*.}
 done
 cd ..
