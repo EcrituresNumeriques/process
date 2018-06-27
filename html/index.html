@@ -22,7 +22,19 @@
   <![endif]-->
 
   <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+<p>Export xelatex</p>  
+<p>Hello world! This is HTML5 Boilerplate.</p>
+<form action="/cgi-bin/exportArticle/exec.cgi" method="get" target="_blank">
+  Identifiant de l'article: <input type="text" name="id"><br>
+  Version: <input type="text" name="version"><br>
+  <input type="submit" value="Submit">
+</form>
+<p>Export pdflatex</p>
+<form action="/cgi-bin/exportArticle/execpdflatex.cgi" method="get" target="_blank">
+  Identifiant de l'article: <input type="text" name="id"><br>
+  Version: <input type="text" name="version"><br>
+  <input type="submit" value="Submit">
+</form>
   <p><a href="/cgi-bin/exportArticle/exec.cgi" target="_blank">Export article</a></p>
 </body>
 
