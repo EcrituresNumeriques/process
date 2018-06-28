@@ -22,14 +22,14 @@
   <![endif]-->
 
   <!-- Add your site or application content here -->
-<p>Export xelatex</p>  
-<p>Hello world! This is HTML5 Boilerplate.</p>
+<h1>Stylo2pdf</h1>
 <form action="/cgi-bin/exportArticle/exec.cgi" method="get" target="_blank">
   Identifiant de l'article: <input type="text" name="id"><br>
   Version: <input type="text" name="version"><br>
+  Article: <input type="text" name="article"><br>
   Processor: <br>
-  <input type="radio" name="processor" value="xelatex"><label>xelatex</label><br>
-  <input type="radio" name="processor" value="pdflatex"><label>pdflatex</label><br>
+  <label><input type="radio" name="processor" value="xelatex" checked>xelatex</label><br>
+  <label><input type="radio" name="processor" value="pdflatex">pdflatex</label><br>
 
   <input type="submit" value="Submit">
 </form>
