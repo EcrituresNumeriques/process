@@ -25,13 +25,20 @@ do
     GET[${parm[i]}]=${parm[i+1]}
 done
 
-echo "<p>id : ${GET[id]}<br> Version : ${GET[version]}<br>Processor : ${GET[processor]}</p>"
+#Assign defaults
+endpoint="Version"
+
+echo "<p>id : ${GET[id]}<br> Article : ${GET[article]}<br> Version : ${GET[version]}<br>Processor : ${GET[processor]}</p>"
 
 #exiting if either id or version not specified
 if [ -z "${GET[id]}" ]; then
     echo "No id specified";
     echo "</body></html>"
     exit 1
+fi
+if [ -n "${GET[article]}"]; then
+    GET[version]=${GET[article]}
+    endpoint="Article"
 fi
 if [ -z "${GET[version]}" ]; then
     echo "No version specified";
@@ -44,8 +51,8 @@ cd "$(dirname "$0")"
 mkdir ${GET[version]}
 cd ${GET[version]}
 
-curl -o ${GET[id]}.zip https://stylo.ecrituresnumeriques.ca/api/v1/zipVersion/${GET[version]}
-curl -o ${GET[id]}.html https://stylo.ecrituresnumeriques.ca/api/v1/htmlVersion/${GET[version]}
+curl -o ${GET[id]}.zip https://stylo.ecrituresnumeriques.ca/api/v1/zip${endpoint}/${GET[version]}
+curl -o ${GET[id]}.html https://stylo.ecrituresnumeriques.ca/api/v1/html${endpoint}/${GET[version]}
 wget -nd -p -H -P media/ -A jpeg,jpg,bmp,gif,png -e robots=off https://stylo.ecrituresnumeriques.ca/api/v1/htmlVersion/${GET[version]}
 unzip ${GET[id]}.zip >> bash.log
 rm ${GET[id]}.zip
@@ -67,7 +74,7 @@ cd media
 COUNTER=0
 for filename in "$3"*; do
     COUNTER=$[$COUNTER +1]
-    echo "${filename%.*}" 
+    echo "${filename%.*}"
     sed -i -e "s@${filename%.*}@${GET[id]}\-img${COUNTER}@g" ../${GET[id]}.md
     sed -i -e "s@${filename%.*}@${GET[id]}\-img${COUNTER}@g" ../${GET[id]}.md.tex
     sed -i -e "s@${filename%.*}@${GET[id]}\-img${COUNTER}@g" ../${GET[id]}.html
@@ -82,7 +89,7 @@ cp -r ../assets/* ./media
 
 
 #create PDF using processor
-if [ "${GET[processor]}" == "pdflatex" ]; then
+if [ "${GET[processor]}" = "pdflatex" ]; then
     pdflatex ${GET[id]}.md.tex >> bash.log
     pdflatex ${GET[id]}.md.tex >> bash.log
 else
@@ -97,8 +104,8 @@ java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/X
 echo "<pre>Getting ZIP file ready"
 zip -r ${GET[id]}.zip .
 echo "</pre>"
-mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/ 
-mv ${GET[id]}.md.pdf /usr/local/apache2/htdocs/export/ 
+mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
+mv ${GET[id]}.md.pdf /usr/local/apache2/htdocs/export/
 
 #Clean folder
 cd ..
