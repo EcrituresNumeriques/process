@@ -53,7 +53,7 @@ rm ${GET[id]}.zip
 rename "s/${GET[version]}/${GET[id]}/g" *
 sed -i -e "s/\/${GET[version]}/${GET[id]}/g" ${GET[id]}.yaml
 
-pandoc --standalone --filter pandoc-citeproc --latex-engine=xelatex --template=../templates/templateLaTeX.latex -f markdown -t latex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.md.tex
+pandoc --standalone --filter pandoc-citeproc --table-of-contents --template=../templates/templateLaTeX.latex -f markdown -t latex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.md.tex
 
 
 sed -i -e 's/https:\/\/i\.imgur.com\//media\//g' ${GET[id]}.md
