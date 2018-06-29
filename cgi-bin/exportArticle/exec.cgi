@@ -36,10 +36,11 @@ if [ -z "${GET[id]}" ]; then
     echo "</body></html>"
     exit 1
 fi
-if [ -n "${GET[article]}"]; then
-    GET[version]=${GET[article]}
-    endpoint="Article"
-fi
+#if [ -n "${GET[article]}"]; then
+#    GET[version]=${GET[article]}
+#    echo "THis is an article"
+#    endpoint="Article"
+#fi
 if [ -z "${GET[version]}" ]; then
     echo "No version specified";
     echo "</body></html>"
