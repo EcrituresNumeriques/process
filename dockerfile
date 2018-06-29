@@ -1,5 +1,14 @@
 FROM httpd:2.4.33
-RUN apt-get update && apt-get install -y curl wget unzip zip rename pandoc pandoc-citeproc texlive texlive-lang-french texlive-latex-extra texlive-xetex default-jre
+RUN apt-cache search texlive french
+RUN apt-get update && apt-get install -y curl wget unzip zip rename texlive texlive-lang-french texlive-latex-extra texlive-xetex default-jre python-pip wget
+
+RUN wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb && \
+    dpkg -i pandoc-1.19.2.1-1-amd64.deb && \
+    wget https://github.com/lierdakil/pandoc-crossref/releases/download/v0.2.6.0/linux-ghc8-pandoc-1-19.tar.gz -q -O - | tar xz && \
+    mv pandoc-crossref /usr/bin/ && \
+    pip install pandocfilters && \
+    apt-get clean -y && \
+    rm -rf pandoc-1.19.2.1-1-amd64.deb /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY ./html/ /usr/local/apache2/htdocs/
 COPY ./config/httpd.conf /usr/local/apache2/conf/httpd.conf
@@ -9,4 +18,5 @@ COPY ./vendor /usr/local/vendor/
 # Give permission to Daemon to cgi-bin
 RUN chown daemon:daemon -R /usr/local/apache2/cgi-bin
 RUN chown daemon:daemon -R /usr/local/apache2/htdocs/export/
+
 
