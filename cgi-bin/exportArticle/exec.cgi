@@ -53,7 +53,7 @@ mkdir ${GET[version]}
 cd ${GET[version]}
 
 curl -o ${GET[id]}.zip https://stylo.ecrituresnumeriques.ca/api/v1/zip${endpoint}/${GET[version]}
-curl -o ${GET[id]}.html https://stylo.ecrituresnumeriques.ca/api/v1/html${endpoint}/${GET[version]}
+
 wget -nd -p -H -P media/ -A jpeg,jpg,bmp,gif,png -e robots=off https://stylo.ecrituresnumeriques.ca/api/v1/htmlVersion/${GET[version]}
 unzip ${GET[id]}.zip >> bash.log
 rm ${GET[id]}.zip
@@ -61,7 +61,11 @@ rm ${GET[id]}.zip
 rename "s/${GET[version]}/${GET[id]}/g" *
 sed -i -e "s/\/${GET[version]}/${GET[id]}/g" ${GET[id]}.yaml
 
-pandoc --standalone --filter pandoc-citeproc --table-of-contents --template=../templates/templateLaTeX.latex -f markdown -t latex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.md.tex
+#Produce html with csl chicagomodified
+pandoc --standalone --ascii --filter pandoc-citeproc --csl=../templates/chicagomodified.csl --template=../templates/templateHtmlDcV2.html5 -f markdown -t html ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.html
+
+#Produce tex with csl chicagomodified
+pandoc --standalone --filter pandoc-citeproc --csl=../templates/chicagomodified.csl --table-of-contents --template=../templates/templateLaTeX.latex -f markdown -t latex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.md.tex 
 
 
 sed -i -e 's/https:\/\/i\.imgur.com\//media\//g' ${GET[id]}.md
