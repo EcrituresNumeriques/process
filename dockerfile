@@ -9,7 +9,7 @@ RUN tar -xzf /usr/local/vendor/linux-ghc8-pandoc-1-19.tar.gz && \
     apt-get clean -y && \
     rm -rf /usr/local/vendor/pandoc-1.19.2.1-1-amd64.deb /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apt-get update && apt-get install -y texlive-lang texlive-lang-ukrainian texlive-lang-arabic
+RUN apt-get update && apt-get install -y texlive-lang-all
 
 
 COPY ./html/ /usr/local/apache2/htdocs/
