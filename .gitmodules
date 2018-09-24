@@ -1,0 +1,3 @@
+[submodule "cgi-bin/exportArticle/templates"]
+	path = cgi-bin/exportArticle/templates
+	url = git@framagit.org:ecrinum/templates-sp.git
