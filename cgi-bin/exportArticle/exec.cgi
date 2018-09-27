@@ -99,7 +99,7 @@ else
 fi
 
 #Create erudit XML from HTML
-java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/XHTML2eruditV1.xsl -o:${GET[id]}.erudit.xml
+java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/XHTML2eruditV2.xsl -o:${GET[id]}.erudit.xml
 
 #Zip all files and move ZIP and PDF to export
 echo "<pre>Getting ZIP file ready"

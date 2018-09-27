@@ -3,6 +3,24 @@ Image docker contenant les processus d'export et conversion de fichiers pour la 
 
 La version en ligne de l'outil est [ici](http://process.ecrituresnumeriques.ca)
 
+## Clone du projet git
+
+La première étape est de cloner le projet git, soit en https ou en ssh
+
+`
+git clone git@github.com:EcrituresNumeriques/stylo.git
+`
+
+Process utilise des submodules git pour consolider les templates de la chaire de recherche du Canada (disponible à l'adresse suivante : https://framagit.org/ecrinum/templates-sp), si vous avez un compte ssh activé sur framagit, vous pouvez récupérer les fichiers templates avec les commandes suivantes:
+
+```
+git submodule init
+git submodule update
+```
+
+Si vous n'avez pas de compte framagit, vous pouvez copier les fichier de l'adresse suivante https://framagit.org/ecrinum/templates-sp et les placer dans le dossier cgi-bin/exportArticle/templates/ <= NON RECOMMANDÉ
+
+
 ## Installation
 
 Pour tester process en local (pour les développeurs):
