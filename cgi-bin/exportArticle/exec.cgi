@@ -61,7 +61,7 @@ rm ${GET[id]}.zip
 rename "s/${GET[version]}/${GET[id]}/g" *
 sed -i -e "s/\/${GET[version]}/${GET[id]}/g" ${GET[id]}.yaml
 
-pandoc --standalone --template=../templates/templateHtmlDcV2.html5  --ascii --filter pandoc-citeproc -f markdown -t html ${GET[id]}.yaml  --csl ../templates/chicagomodified.csl -o ${GET[id]}.html
+pandoc --standalone --template=../templates/templateHtmlDcV2.html5  --ascii --filter pandoc-citeproc -f markdown -t html ${GET[id]}.md ${GET[id]}.yaml  --csl ../templates/chicagomodified.csl -o ${GET[id]}.html
 
 pandoc --standalone --filter pandoc-citeproc --table-of-contents --template=../templates/templateLaTeX.latex -f markdown -t latex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.md.tex
 
