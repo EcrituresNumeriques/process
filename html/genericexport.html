@@ -1,0 +1,56 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+<h1>Stylo export</h1>
+<form action="/cgi-bin/exportArticle/exec.cgi" method="get" target="_blank">
+  Identifiant de l'article: <input type="text" name="id"><br>
+  Version: <input type="text" name="version"><br>
+  <!--Article: <input type="text" name="article"><br>-->
+  Format:
+  <select name="format">
+<option value="pdf">PDF</option>
+<option value="html">HTML</option>
+<option value="XMLerudit">XML eruditArticle</option>
+<option value="odt">odt</option>
+<option value="docx">docx</option>
+</select>
+  <br/>
+Bibliographical style:  
+  
+  <select name="bibstyle">
+<option value="chicagomodified">Chicago inline</option>
+<option value="chicago-fullnote-bibliography-fr">Chicago footnotes</option>
+<option value="lettres-et-sciences-humaines-fr">Lettres et sciences humaines</option>
+</select>
+  <br/>
+  Processor: <br>
+  <label><input type="radio" name="processor" value="xelatex" checked>xelatex</label><br>
+  <label><input type="radio" name="processor" value="pdflatex">pdflatex</label><br>
+
+  <input type="submit" value="Submit">
+</form>
+<!--  <p><a href="/cgi-bin/exportArticle/exec.cgi?id=SP002&version=5b2be647e5842b0011ac874d&processor=xelatex" target="_blank">Export article</a></p>-->
+</body>
+
+</html>
