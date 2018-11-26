@@ -101,10 +101,9 @@ fi
 
 
 if [ "${GET[format]}" = "pdf" ]; then
-	pandoc --standalone --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log
+	pandoc --standalone --filter pandoc-citeproc --table-of-contents -f markdown -t latex --latex-engine=xelatex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log
 
-
-	echo "<pre>Getting PDF file ready"
+	echo "<pre>Getting HTML file ready"
 	echo "</pre>"
 
 	#Zip all files and move ZIP and PDF to export
@@ -118,10 +117,9 @@ if [ "${GET[format]}" = "pdf" ]; then
 	rm -R ${GET[version]}
 
 	echo "<br>"
-	echo "PDF : <a href='/export/${GET[id]}.pdf' target='_blank'>/export/${GET[id]}.pdf</a><br>"
+	echo "HTML plouf plouf : <a href='/export/${GET[id]}.pdf' target='_blank'>/export/${GET[id]}.pdf</a><br>"
 
 	echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
-
 
 else   	
 	pandoc --standalone --filter pandoc-citeproc --table-of-contents -f markdown -t ${GET[format]} --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.${GET[format]} >> bash.log
