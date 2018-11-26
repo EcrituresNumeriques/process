@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxField = 30; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+ var x = 1; //Initial field counter is 1   
+ var field0HTML = '<div>Version of chapter'; //New input field html 
+var field1HTML = '<input type="text" name="version" value=""/><a href="javascript:void(0);" class="remove_button">Remove field</a></div>'; //New input field html 
+
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(field0HTML+x+field1HTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+</script>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+           $("#go").click(function(){
+               var g = $("#version").val();
+               var href = '/cgi-bin/exportBook/exec.cgi?version=';
+               if(g != null) {
+                   href += g;
+               }
+               document.location.href=href;
+           });
+        });
+    </script>
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+<h1>Stylo export</h1>
+
+
+
+
+<form action="/cgi-bin/exportBook/exec.cgi" method="get" target="_blank">
+Identifiant de l'article: <input type="text" name="id"><br>
+<div class="field_wrapper">
+    <div>
+
+      Version of chapter 1:  <input id="version" type="text" name="version" value=""/>
+        <a href="javascript:void(0);" class="add_button" title="Add field">Add a field</a>
+ 
+
+    </div>
+</div>
+ Format:
+  <select name="format">
+<option value="pdf">PDF</option>
+<option value="html">HTML</option>
+<option value="XMLerudit">XML eruditArticle</option>
+<option value="odt">odt</option>
+<option value="docx">docx</option>
+</select>
+  <br/>
+Bibliographical style:  
+  
+  <select name="bibstyle">
+<option value="chicagomodified">Chicago inline</option>
+<option value="chicago-fullnote-bibliography-fr">Chicago footnotes</option>
+<option value="lettres-et-sciences-humaines-fr">Lettres et sciences humaines</option>
+</select>
+  <br/>
+  Processor: <br>
+  <label><input type="radio" name="processor" value="xelatex" checked>xelatex</label><br>
+  <label><input type="radio" name="processor" value="pdflatex">pdflatex</label><br>
+
+  <input type="submit" value="Submit" id="go">
+ 
+</form>
+<br/>
+<br/><br/>
+
+
+<!--  <p><a href="/cgi-bin/exportArticle/exec.cgi?id=SP002&version=5b2be647e5842b0011ac874d&processor=xelatex" target="_blank">Export article</a></p>-->
+</body>
+
+</html>
