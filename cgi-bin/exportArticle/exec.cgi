@@ -28,7 +28,7 @@ done
 #Assign defaults
 endpoint="Version"
 
-echo "<p>id : ${GET[id]}<br> Article : ${GET[article]}<br> Version : ${GET[version]}<br>Format : ${GET[format]}<br>Bibliographical style : ${GET[bibstyle]}<br>Processor : ${GET[processor]}</p>"
+echo "<p>id : ${GET[id]}<br> Article : ${GET[article]}<br> Version : ${GET[version]}<br>Format : ${GET[format]}<br>Bibliographical style : ${GET[bibstyle]}<br>Processor : ${GET[processor]}<br> source: ${GET[source]}</p>"
 
 #exiting if either id or version not specified
 if [ -z "${GET[id]}" ]; then
@@ -47,14 +47,16 @@ if [ -z "${GET[version]}" ]; then
 	exit 1
 fi
 
+GET[source]=${GET[source]//"%3A"/:}
+GET[source]=${GET[source]//"%2F"/\/}
+echo ${GET[source]}
 #Relocate script + create folder for that version
 cd "$(dirname "$0")"
 mkdir ${GET[version]}
 cd ${GET[version]}
-
-curl -o ${GET[id]}.zip https://stylo.ecrituresnumeriques.ca/api/v1/zip${endpoint}/${GET[version]}
+curl -o ${GET[id]}.zip ${GET[source]}zip${endpoint}/${GET[version]}
 # curl -o ${GET[id]}.html https://stylo.ecrituresnumeriques.ca/api/v1/html${endpoint}/${GET[version]}
-wget -nd -p -H -P media/ -A jpeg,jpg,bmp,gif,png -e robots=off https://stylo.ecrituresnumeriques.ca/api/v1/htmlVersion/${GET[version]}
+wget -nd -p -H -P media/ -A jpeg,jpg,bmp,gif,png -e robots=off ${GET[source]}htmlVersion/${GET[version]}
 unzip ${GET[id]}.zip >> bash.log
 rm ${GET[id]}.zip
 
@@ -176,4 +178,43 @@ fi
 # echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
 # 
 
+echo "
+<h1>Stylo export</h1>
+<form action=\"/cgi-bin/exportArticle/exec.cgi\" method=\"get\">
+<input type=\"hidden\" name=\"source\" value=\"${GET[source]}\"><br>  
+<input type=\"hidden\" name=\"id\" value=\"${GET[id]}\"><br>
+  <input type=\"hidden\" name=\"version\" value=\"${GET[version]}\"><br>
+  <!--Article: <input type=\"text\" name=\"article\"><br>-->
+  Format:
+  <select name=\"format\">
+<option value=\"pdf\">PDF</option>
+<option value=\"html\">HTML</option>
+<option value=\"XMLerudit\">XML eruditArticle</option>
+<option value=\"odt\">odt</option>
+<option value=\"docx\">docx</option>
+<option value=\"tei\">TEI Lite</option>
+
+</select>
+  <br/>
+Bibliographical style:  
+  
+  <select name=\"bibstyle\">
+<option value=\"chicagomodified\">Chicago inline</option>
+<option value=\"chicago-fullnote-bibliography-fr\">Chicago footnotes</option>
+<option value=\"lettres-et-sciences-humaines-fr\">Lettres et sciences humaines</option>
+</select>
+  <br/>
+  Processor: <br>
+  <label><input type=\"radio\" name=\"processor\" value=\"xelatex\" checked>xelatex</label><br>
+  <label><input type=\"radio\" name=\"processor\" value=\"pdflatex\">pdflatex</label><br>
+
+  <input type=\"submit\" value=\"Submit\">
+</form>"
+
+echo "<a href=\"/cgi-bin/exportArticle/exec.cgi?id=${GET[id]}&version=${GET[version]}&processor=${GET[procesor]}&source=${GET[source]}&format=html&bibstyle=${GET[bibstyle]}\">Export en HTML</a>"
+echo "<a href=\"/cgi-bin/exportArticle/exec.cgi?id=${GET[id]}&version=${GET[version]}&processor=${GET[procesor]}&source=${GET[source]}&format=docx&bibstyle=${GET[bibstyle]}\">Export en DOCX</a>"
+echo "<a href=\"/cgi-bin/exportArticle/exec.cgi?id=${GET[id]}&version=${GET[version]}&processor=${GET[procesor]}&source=${GET[source]}&format=tei&bibstyle=${GET[bibstyle]}\">Export en TEI Lite</a>"
+echo "<a href=\"/cgi-bin/exportArticle/exec.cgi?id=${GET[id]}&version=${GET[version]}&processor=${GET[procesor]}&source=${GET[source]}&format=odt&bibstyle=${GET[bibstyle]}\">Export en ODT</a>"
+echo "<a href=\"/cgi-bin/exportArticle/exec.cgi?id=${GET[id]}&version=${GET[version]}&processor=${GET[procesor]}&source=${GET[source]}&format=pdf&bibstyle=${GET[bibstyle]}\">Export en PDF</a>"
+echo "<a href=\"/cgi-bin/exportArticle/exec.cgi?id=${GET[id]}&version=${GET[version]}&processor=${GET[procesor]}&source=${GET[source]}&format=${GET[format]}&bibstyle=chicago-fullnote-bibliography-fr.csl\">Export en Chicago Fullnote</a>"
 echo "</body></html>"
