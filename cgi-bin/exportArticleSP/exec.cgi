@@ -52,20 +52,20 @@ cd "$(dirname "$0")"
 mkdir ${GET[version]}
 cd ${GET[version]}
 
-curl -o ${GET[id]}.zip https://stylo.ecrituresnumeriques.ca/api/v1/zip${endpoint}/${GET[version]}
+curl -v -o ${GET[id]}.zip https://stylo.14159.ninja/zip${endpoint}/${GET[version]}
 # curl -o ${GET[id]}.html https://stylo.ecrituresnumeriques.ca/api/v1/html${endpoint}/${GET[version]}
-wget -nd -p -H -P media/ -A jpeg,jpg,bmp,gif,png -e robots=off https://stylo.ecrituresnumeriques.ca/api/v1/htmlVersion/${GET[version]}
+wget -nd -p -H -P media/ -A jpeg,jpg,bmp,gif,png -e robots=off https://stylo.14159.ninja/htmlVersion/${GET[version]}
 unzip ${GET[id]}.zip >> bash.log
 rm ${GET[id]}.zip
 
 rename "s/${GET[version]}/${GET[id]}/g" *
 sed -i -e "s/\/${GET[version]}/${GET[id]}/g" ${GET[id]}.yaml
-
-pandoc --standalone --template=../templates/templateHtmlDcV2.html5  --ascii --filter pandoc-citeproc -f markdown -t html ${GET[id]}.md ${GET[id]}.yaml  --csl ../templates/chicagomodified.csl -o ${GET[id]}.html
+pandoc --verbose --standalone --section-divs --ascii --toc --template=../templates/templateHtml5.html5 --csl=../templates/chicagomodified.csl -f markdown -t html5 --filter pandoc-citeproc ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.html
+#pandoc -v --standalone --template=../templates/templateHtmlDcV2.html5  --ascii --filter pandoc-citeproc -f markdown -t html5 ${GET[id]}.md ${GET[id]}.yaml  --csl ../templates/chicagomodified.csl -o ${GET[id]}.html
 
 pandoc --standalone --filter pandoc-citeproc --table-of-contents --template=../templates/templateLaTeX.latex -f markdown -t latex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.md.tex
 
-
+echo "tout va bien pour le moment"
 sed -i -e 's/https:\/\/i\.imgur.com\//media\//g' ${GET[id]}.md
 sed -i -e 's/https:\/\/i\.imgur.com\//media\//g' ${GET[id]}.html
 sed -i -e 's/https:\/\/i\.imgur.com\//media\//g' ${GET[id]}.md.tex
@@ -102,7 +102,7 @@ fi
 
 #Create erudit XML from HTML
 # ancienne commance : java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/XHTML2eruditV2.xsl -o:${GET[id]}.erudit.xml
-exec java  -cp /usr/local/vendor/saxon9he.jar:/usr/local/vendor/tagsoup-1.2.1.jar net.sf.saxon.Transform -x:org.ccil.cowan.tagsoup.Parser -s:${GET[id]}.html -xsl:../templates/XHTML2eruditV2.xsl -o:${GET[id]}.erudit.xml !indent=yes
+java  -cp /usr/local/vendor/saxon9he.jar:/usr/local/vendor/tagsoup-1.2.1.jar net.sf.saxon.Transform -x:org.ccil.cowan.tagsoup.Parser -s:${GET[id]}.html -xsl:../templates/XHTML52erudit.xsl -o:${GET[id]}.erudit.xml !indent=yes
 #Zip all files and move ZIP and PDF to export
 echo "<pre>Getting ZIP file ready"
 zip -r ${GET[id]}.zip .
