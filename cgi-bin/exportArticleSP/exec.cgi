@@ -102,7 +102,7 @@ fi
 
 #Create erudit XML from HTML
 java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/XHTML2eruditV2.xsl -o:${GET[id]}.erudit.xml
-
+# exec java  -cp /usr/local/vendor/saxon9he.jar:/usr/local/vendor/tagsoup-1.2.1.jar net.sf.saxon.Transform -x:org.ccil.cowan.tagsoup.Parser -s:${GET[id]}.html -xsl:../templates/XHTML2eruditV2.xsl -o:${GET[id]}.erudit.xml !indent=yes
 #Zip all files and move ZIP and PDF to export
 echo "<pre>Getting ZIP file ready"
 zip -r ${GET[id]}.zip .

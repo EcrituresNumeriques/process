@@ -16,366 +16,366 @@ echo "<html>
 <title>Stylo export</title>
 
 <!--style et lien vers CSS-->
-     <style type=\"text/css\">code{white-space: pre;}</style>
-            <!--Generated CSS from stylo-->
-  <style type=\"text/css\">
-      html, body {
-        background: #f8f8f8;
-        font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100%;
-        overflow-x: hidden;
-        position: relative;
+<style type=\"text/css\">code{white-space: pre;}</style>
+<!--Generated CSS from stylo-->
+<style type=\"text/css\">
+html, body {
+background: #f8f8f8;
+font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;
+margin: 0;
+padding: 0;
+width: 100%;
+min-height: 100%;
+overflow-x: hidden;
+position: relative;
       }
       body {
-        overflow-y: scroll;
+      overflow-y: scroll;
       }
 
       #app {
-        min-height: 100vh;
+      min-height: 100vh;
       }
 
       #app > header, .gridCenter > header {
-        padding: 0.5rem 1rem;
-        background-color: #7c7c7c;
-        color: white;
-        display: flex;
-        align-items: center;
+      padding: 0.5rem 1rem;
+      background-color: #7c7c7c;
+      color: white;
+      display: flex;
+      align-items: center;
       }
       #app > header .wrapper, .gridCenter > header .wrapper {
-        flex: 1 1 auto;
+      flex: 1 1 auto;
       }
       #app > header h1, .gridCenter > header h1 {
-        margin: 0;
-        flex: 0 0 auto;
+      margin: 0;
+      flex: 0 0 auto;
       }
       #app > header nav, .gridCenter > header nav {
-        flex: 0 0 auto;
+      flex: 0 0 auto;
       }
       #app > header nav a, .gridCenter > header nav a {
-        color: white;
-        margin-left: 1rem;
+      color: white;
+      margin-left: 1rem;
       }
 
       div#app header {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
       }
       div#app header img {
-        width: 100%;
-        padding-bottom: 20px;
+      width: 100%;
+      padding-bottom: 20px;
       }
       div#app main#mainView {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 1000px;
-        background-color: white;
-        padding: 1em;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1000px;
+      background-color: white;
+      padding: 1em;
       }
       div#app main#mainView section h1 {
-        font-size: 2em;
-        margin: 0 0 1em 0;
+      font-size: 2em;
+      margin: 0 0 1em 0;
       }
 
       div#app main#mainView p {
-        text-align: justify;
-        font-family: sans;
-        font-size: 1em;
-        line-height: 1.5em;
+      text-align: justify;
+      font-family: sans;
+      font-size: 1em;
+      line-height: 1.5em;
       }
 
       div#app main#mainView h1, div#app main#mainView h2, div#app main#mainView h3 {
-        color:purple;
+      color:purple;
       }
 
       div#app main#mainView a{
-        color:purple;
+      color:purple;
       }
 
       div#app main#mainView li {
-        text-align: justify;
-        font-family: sans;
-        font-size: 1em;
-        line-height: 1.4em;
+      text-align: justify;
+      font-family: sans;
+      font-size: 1em;
+      line-height: 1.4em;
       }
 
       div#app main#mainView blockquote {
-        border-left: 4px solid lightgrey;
-        padding-left: 1em;
-        font-size: 1em;
+      border-left: 4px solid lightgrey;
+      padding-left: 1em;
+      font-size: 1em;
       }
 
       div#app main#mainView sup {
-        font-size: 0.7em;
+      font-size: 0.7em;
       }
 
       div#app main#mainView .citation {
-        color: darkslateblue;
+      color: darkslateblue;
       }
 
       div#app main#mainView .footnoteRef {
-        font-weight: 600;
+      font-weight: 600;
       }
 
       div#app main#mainView .references p{
-        font-size: 0.9em;
-        line-height: 1.3em;
+      font-size: 0.9em;
+      line-height: 1.3em;
       }
 
       div#app main#mainView .footnotes p {
-        font-size: 0.9em;
-        line-height: 1.3em;
+      font-size: 0.9em;
+      line-height: 1.3em;
       }
 
       div.indexations-foaf{
-          background-color: #f0f0f0;
-          padding: 0.5rem 1rem;
+      background-color: #f0f0f0;
+      padding: 0.5rem 1rem;
       }
 
       div#schema-scholarly-article{
-          background-color: #f0f0f0;
-          padding: 0.5rem 1rem;
+      background-color: #f0f0f0;
+      padding: 0.5rem 1rem;
       }
 
       #schema-scholarly-article > span:nth-child(1)::before {
-          content: \\"Title: \\";
+      content: \\"Title: \\";
       }
 
       #schema-scholarly-article > span:nth-child(1) {
-          font-size:2rem;
+      font-size:2rem;
       }
 
       #schema-scholarly-article > span:nth-child(3)::before{
-          content: \"Subtitle: \";
-          font-weight: bold;
+      content: \"Subtitle: \";
+      font-weight: bold;
       }
 
       #schema-scholarly-article > span[property=\"author\"]::before{
-          content:\"Author: \";
-          font-weight: bold;
+      content:\"Author: \";
+      font-weight: bold;
       }
 
       .indexations-foaf {
-          display:none;
+      display:none;
       }
 
       #schema-scholarly-article > span:nth-child(9) > span:nth-child(1)::before {
-          content:\"Publisher: \";
-          font-weight: bold;
+      content:\"Publisher: \";
+      font-weight: bold;
       }
 
       #schema-scholarly-article > span:nth-child(9) > span:nth-child(3)::before {
-          content:\"ISSN: \";
-          font-weight: bold;
+      content:\"ISSN: \";
+      font-weight: bold;
       }
 
       #schema-scholarly-article > div:nth-child(10) > span:nth-child(1) > span:nth-child(1)::before {
-          content:\"Journal: \";
-          font-weight: bold;
+      content:\"Journal: \";
+      font-weight: bold;
       }
 
       #schema-scholarly-article > div:nth-child(10) > span:nth-child(2)::before {
-          content:\"Date: \";
-          font-weight: bold;
+      content:\"Date: \";
+      font-weight: bold;
       }
 
       .titreDossier::before {
-          content:\"Dossier: \";
-          font-weight: bold;
+      content:\"Dossier: \";
+      font-weight: bold;
       }
 
       div.resume:nth-child(1)::before {
-          content:\"Abstract: \";
-          font-weight: bold;
+      content:\"Abstract: \";
+      font-weight: bold;
       }
 
       .keywords::before {
-          content:\"Aligned Keywords:\";
-          font-weight: bold;
+      content:\"Aligned Keywords:\";
+      font-weight: bold;
       }
 
       div.authorKeywords_fr {
-          background-color: #f0f0f0;
-          padding: 0.5rem 1rem;
+      background-color: #f0f0f0;
+      padding: 0.5rem 1rem;
       }
 
       div.authorKeywords_en {
-          background-color: #f0f0f0;
-          padding: 0.5rem 1rem;
+      background-color: #f0f0f0;
+      padding: 0.5rem 1rem;
       }
 
       div.indexations-foaf:before {
-          content:\"foaf: \";
-          font-style:italic;
+      content:\"foaf: \";
+      font-style:italic;
 
       }
       div.authorKeywords_fr:before {
-          content:\"Mot-clefs: \";
-          font-style:italic;
+      content:\"Mot-clefs: \";
+      font-style:italic;
       }
       div.authorKeywords_en:before {
-          content:\"Keywords: \";
-          font-style:italic;
+      content:\"Keywords: \";
+      font-style:italic;
       }
 
-p span.epigraphe {
-  margin-left: 100px;
-  margin-right: 300px;
-  text-align: left;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  float: right;
-  font-style: italic;
+      p span.epigraphe {
+      margin-left: 100px;
+      margin-right: 300px;
+      text-align: left;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      float: right;
+      font-style: italic;
 }
 
 p span.dedicace {
-  margin-left: 100px;
-  text-align: left;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  float: right;
-  font-style: italic;
+margin-left: 100px;
+text-align: left;
+margin-top: 10px;
+margin-bottom: 30px;
+float: right;
+font-style: italic;
 }
 
 p span.note {
-  margin-left: 100px;
-  text-align: left;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  float: right;
-  font-style: italic;
+margin-left: 100px;
+text-align: left;
+margin-top: 10px;
+margin-bottom: 30px;
+float: right;
+font-style: italic;
 }
 
 span.these {
-  background-color: MistyRose;
+background-color: MistyRose;
 }
 
 span.these:hover::before {
-  content: \"Th&#232;se: <\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \"Th&#232;se: <\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.these:hover::after {
-  content: \">\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \">\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.exemple {
-  background-color: PowderBlue;
+background-color: PowderBlue;
 }
 
 span.exemple:hover::before {
-  content: \"Exemple: <\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \"Exemple: <\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.exemple:hover::after {
-  content: \">\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \">\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.concept {
-  background-color: Plum;
+background-color: Plum;
 }
 
 span.concept:hover::before {
-  content: \"Concept cl&#233;: <\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \"Concept cl&#233;: <\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.concept:hover::after {
-  content: \">\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \">\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.definition {
-  background-color: Peachpuff;
+background-color: Peachpuff;
 }
 
 span.definition:hover::before {
-  content: \"D&#233;finition: <\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \"D&#233;finition: <\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.definition:hover::after {
-  content: \">\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \">\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.question {
-  background-color: PaleGoldenRod ;
+background-color: PaleGoldenRod ;
 }
 
 span.question:hover::before {
-  content: \"Question: <\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \"Question: <\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 span.question:hover::after {
-  content: \">\";
-  position:relative;
-  color: purple;
-  background-color: whitesmoke;
-  font-size: 1em;
-  padding-left:5px;
-  padding-right:5px;
+content: \">\";
+position:relative;
+color: purple;
+background-color: whitesmoke;
+font-size: 1em;
+padding-left:5px;
+padding-right:5px;
 }
 
 }
-  </style>
+</style>
 </head>
 
 <!--corps du document-->
 <body>
-    <div id=\"app\">
-    <header><h1>Stylo Export</h1><div class=\"wrapper\"></div><nav><a href=\"javascript:window.close()\">close</a></nav></header>
-    <main id=\"mainView\"><h2>Export of a Stylo article</h2> "
+<div id=\"app\">
+<header><h1>Stylo Export</h1><div class=\"wrapper\"></div><nav><a href=\"javascript:window.close()\">close</a></nav></header>
+<main id=\"mainView\"><h2>Export of a Stylo article</h2> "
 
 #Assign parameters : exec.cgi?id=SP002&version=5b2be647e5842b0011ac874d&processor=pdflatex
 #returns ${GET[id]} ${GET[version]} ${GET[processor]}
@@ -469,79 +469,101 @@ fi
 
 case "${GET[format]}" in
 	"pdf")
-	pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl --pdf-engine=xelatex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log
+		pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl --pdf-engine=xelatex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log
 
-	echo "pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl --pdf-engine=xelatex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log"
-	
-
-
-	echo "<pre>Getting PDF file ready"
-	echo "</pre>"
-
-	#Zip all files and move ZIP and PDF to export
-	echo "<pre>Getting ZIP file ready"
-	zip -r ${GET[id]}.zip .
-	echo "</pre>"
-	mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
-	mv ${GET[id]}.pdf /usr/local/apache2/htdocs/export/
-	#Clean folder
-	cd ..
-	rm -R ${GET[version]}
-
-	echo "<br>"
-	echo "PDF : <a href='/export/${GET[id]}.pdf' target='_blank'>/export/${GET[id]}.pdf</a><br>"
-
-	echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
-
-;;
-"tex")
-	pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.tex >> bash.log
-
-	echo "pandoc --standalone --filter pandoc-citeproc --table-of-contents -f markdown -t latex --template=../template/template.latex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log"
-	xelatex --interaction=batchmode ${GET[id]}.tex >> bash.log
-	xelatex --interaction=batchmode ${GET[id]}.tex
+		echo "pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl --pdf-engine=xelatex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log"
 
 
-	echo "<pre>Getting PDF file ready"
-	echo "</pre>"
 
-	#Zip all files and move ZIP and PDF to export
-	echo "<pre>Getting ZIP file ready"
-	zip -r ${GET[id]}.zip .
-	echo "</pre>"
-	mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
-	mv ${GET[id]}.pdf /usr/local/apache2/htdocs/export/
-	#Clean folder
-	cd ..
-	rm -R ${GET[version]}
+		echo "<pre>Getting PDF file ready"
+		echo "</pre>"
 
-	echo "<br>"
-	echo "PDF : <a href='/export/${GET[id]}.pdf' target='_blank'>/export/${GET[id]}.pdf</a><br>"
+		#Zip all files and move ZIP and PDF to export
+		echo "<pre>Getting ZIP file ready"
+		zip -r ${GET[id]}.zip .
+		echo "</pre>"
+		mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
+		mv ${GET[id]}.pdf /usr/local/apache2/htdocs/export/
+		#Clean folder
+		cd ..
+		rm -R ${GET[version]}
 
-	echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
+		echo "<br>"
+		echo "PDF : <a href='/export/${GET[id]}.pdf' target='_blank'>/export/${GET[id]}.pdf</a><br>"
 
-;;
-*)   	
-	pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t ${GET[format]} --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.${GET[format]} >> bash.log
+		echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
 
-	echo "<pre>Getting ${GET[format]} file ready"
-	echo "</pre>"
+		;;
+	"tex")
+		pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.tex >> bash.log
 
-	#Zip all files and move ZIP and PDF to export
-	echo "<pre>Getting ZIP file ready"
-	zip -r ${GET[id]}.zip .
-	echo "</pre>"
-	mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
-	mv ${GET[id]}.${GET[format]} /usr/local/apache2/htdocs/export/
-	#Clean folder
-	cd ..
-	rm -R ${GET[version]}
+		echo "pandoc --standalone --filter pandoc-citeproc --table-of-contents -f markdown -t latex --template=../template/template.latex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log"
+		xelatex --interaction=batchmode ${GET[id]}.tex >> bash.log
+		xelatex --interaction=batchmode ${GET[id]}.tex
 
-	echo "<br>"
-	echo "${GET[format]} : <a href='/export/${GET[id]}.${GET[format]}' target='_blank'>/export/${GET[id]}.${GET[format]}</a><br>"
 
-	echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
-;;
+		echo "<pre>Getting PDF file ready"
+		echo "</pre>"
+
+		#Zip all files and move ZIP and PDF to export
+		echo "<pre>Getting ZIP file ready"
+		zip -r ${GET[id]}.zip .
+		echo "</pre>"
+		mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
+		mv ${GET[id]}.pdf /usr/local/apache2/htdocs/export/
+		#Clean folder
+		cd ..
+		rm -R ${GET[version]}
+
+		echo "<br>"
+		echo "PDF : <a href='/export/${GET[id]}.pdf' target='_blank'>/export/${GET[id]}.pdf</a><br>"
+
+		echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
+
+		;;
+	"xml")   	
+		pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t html5 --csl ../templates/chicagomodified.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.html >> bash.log
+
+java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/XHTML2eruditV2.xsl -o:${GET[id]}.xml
+		echo "<pre>Getting ${GET[format]} file ready"
+		echo "</pre>"
+
+		#Zip all files and move ZIP and PDF to export
+		echo "<pre>Getting ZIP file ready"
+		zip -r ${GET[id]}.zip .
+		echo "</pre>"
+		mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
+		mv ${GET[id]}.${GET[format]} /usr/local/apache2/htdocs/export/
+		#Clean folder
+		cd ..
+		rm -R ${GET[version]}
+
+		echo "<br>"
+		echo "${GET[format]} : <a href='/export/${GET[id]}.${GET[format]}' target='_blank'>/export/${GET[id]}.${GET[format]}</a><br>"
+
+		echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
+		;;
+	*)   	
+		pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t ${GET[format]} --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.${GET[format]} >> bash.log
+
+		echo "<pre>Getting ${GET[format]} file ready"
+		echo "</pre>"
+
+		#Zip all files and move ZIP and PDF to export
+		echo "<pre>Getting ZIP file ready"
+		zip -r ${GET[id]}.zip .
+		echo "</pre>"
+		mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
+		mv ${GET[id]}.${GET[format]} /usr/local/apache2/htdocs/export/
+		#Clean folder
+		cd ..
+		rm -R ${GET[version]}
+
+		echo "<br>"
+		echo "${GET[format]} : <a href='/export/${GET[id]}.${GET[format]}' target='_blank'>/export/${GET[id]}.${GET[format]}</a><br>"
+
+		echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
+		;;
 esac
 
 
@@ -579,33 +601,33 @@ echo "
 <form action=\"/cgi-bin/exportArticle/exec.cgi\" method=\"get\">
 <input type=\"hidden\" name=\"source\" value=\"${GET[source]}\"> 
 <input type=\"hidden\" name=\"id\" value=\"${GET[id]}\">
-  <input type=\"hidden\" name=\"version\" value=\"${GET[version]}\">
-  Format:
-  <select name=\"format\">
+<input type=\"hidden\" name=\"version\" value=\"${GET[version]}\">
+Format:
+<select name=\"format\">
 <option value=\"pdf\">PDF</option>
 <option value=\"tex\">tex</option>
 <option value=\"html\">HTML</option>
-<option value=\"XMLerudit\">XML eruditArticle</option>
+<option value=\"xml\">XML eruditArticle</option>
 <option value=\"odt\">odt</option>
 <option value=\"docx\">docx</option>
 <option value=\"tei\">TEI Lite</option>
 
 </select>
-  <br/>
-  <br/>
+<br/>
+<br/>
 Bibliographical style:  
-  
-  <select name=\"bibstyle\">
+
+<select name=\"bibstyle\">
 <option value=\"chicagomodified\">Chicago inline</option>
 <option value=\"chicago-fullnote-bibliography-fr\">Chicago footnotes</option>
 <option value=\"lettres-et-sciences-humaines-fr\">Lettres et sciences humaines</option>
 </select>
-  <br/>
-  Processor: <br>
-  <label><input type=\"radio\" name=\"processor\" value=\"xelatex\" checked>xelatex</label><br>
-  <label><input type=\"radio\" name=\"processor\" value=\"pdflatex\">pdflatex</label><br>
+<br/>
+Processor: <br>
+<label><input type=\"radio\" name=\"processor\" value=\"xelatex\" checked>xelatex</label><br>
+<label><input type=\"radio\" name=\"processor\" value=\"pdflatex\">pdflatex</label><br>
 
-  <input type=\"submit\" value=\"Submit\">
+<input type=\"submit\" value=\"Submit\">
 </form>"
 
 #echo "<a href=\"/cgi-bin/exportArticle/exec.cgi?id=${GET[id]}&version=${GET[version]}&processor=${GET[procesor]}&source=${GET[source]}&format=html&bibstyle=${GET[bibstyle]}\">Export en HTML</a>"
