@@ -394,11 +394,8 @@ endpoint="Version"
 
 if [ "${GET[toc]}" = "true" ]; then
 	toc="--table-of-contents"
-echo "$toc"
-echo ", ${GET[toc]}"
 else
 	toc=""
-echo ", ${GET[toc]} faux"
 fi
 echo "<p>You are exporting: <br>Article name: <b>${GET[id]}</b><br> Version : <b>${GET[version]} </b>(this is the id of the version you are exporting).<br>Format : <b>${GET[format]} </b>(this is the format you asked; more formats are avaiable on this page)<br>Bibliographical style : <b>${GET[bibstyle]} </b>(more bibliographical styles avaiable on this page)<br>Table of contents : ${GET[toc]}<br>Processor : ${GET[processor]}<br> Your Stylo server is: ${GET[source]}</p>"
 
@@ -593,6 +590,7 @@ java  -cp /usr/local/vendor/saxon9he.jar:/usr/local/vendor/tagsoup-1.2.1.jar net
 	*)   	
 		pandoc --standalone --verbose --filter pandoc-citeproc $toc -f markdown -t ${GET[format]} --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.${GET[format]} >> bash.log
 
+	echo	"pandoc --standalone --verbose --filter pandoc-citeproc $toc -f markdown -t ${GET[format]} --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.${GET[format]} >> bash.log"
 		echo "<pre>Getting ${GET[format]} file ready"
 		echo "</pre>"
 
