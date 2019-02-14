@@ -392,7 +392,15 @@ done
 #Assign defaults
 endpoint="Version"
 
-echo "<p>You are exporting: <br>Article name: <b>${GET[id]}</b><br> Version : <b>${GET[version]} </b>(this is the id of the version you are exporting).<br>Format : <b>${GET[format]} </b>(this is the format you asked; more formats are avaiable on this page)<br>Bibliographical style : <b>${GET[bibstyle]} </b>(more bibliographical styles avaiable on this page)<br>Processor : ${GET[processor]}<br> Your Stylo server is: ${GET[source]}</p>"
+if [ "${GET[toc]}" = "true" ]; then
+	toc="--table-of-contents"
+echo "$toc"
+echo ", ${GET[toc]}"
+else
+	toc=""
+echo ", ${GET[toc]} faux"
+fi
+echo "<p>You are exporting: <br>Article name: <b>${GET[id]}</b><br> Version : <b>${GET[version]} </b>(this is the id of the version you are exporting).<br>Format : <b>${GET[format]} </b>(this is the format you asked; more formats are avaiable on this page)<br>Bibliographical style : <b>${GET[bibstyle]} </b>(more bibliographical styles avaiable on this page)<br>Table of contents : ${GET[toc]}<br>Processor : ${GET[processor]}<br> Your Stylo server is: ${GET[source]}</p>"
 
 #exiting if either id or version not specified
 if [ -z "${GET[id]}" ]; then
@@ -402,7 +410,7 @@ if [ -z "${GET[id]}" ]; then
 fi
 #if [ -n "${GET[article]}"]; then
 #    GET[version]=${GET[article]}
-#    echo "THis is an article"
+#    echo "This is an article"
 #    endpoint="Article"
 #fi
 if [ -z "${GET[version]}" ]; then
@@ -466,10 +474,9 @@ fi
 #create PDF using processor
 
 
-
 case "${GET[format]}" in
 	"pdf")
-		pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl --pdf-engine=xelatex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log
+		pandoc --standalone --verbose --filter pandoc-citeproc $toc  -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl --pdf-engine=xelatex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log
 
 		echo "pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl --pdf-engine=xelatex ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log"
 
@@ -495,7 +502,7 @@ case "${GET[format]}" in
 
 		;;
 	"tex")
-		pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.tex >> bash.log
+		pandoc --standalone --verbose --filter pandoc-citeproc $toc -f markdown -t latex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.tex >> bash.log
 
 		echo "pandoc --standalone --filter pandoc-citeproc --table-of-contents -f markdown -t latex --template=../template/template.latex --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.pdf >> bash.log"
 		xelatex --interaction=batchmode ${GET[id]}.tex >> bash.log
@@ -522,9 +529,9 @@ case "${GET[format]}" in
 
 		;;
 	"xml")   	
-		pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t html5 --csl ../templates/chicagomodified.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.html >> bash.log
+		pandoc --standalone --verbose --filter pandoc-citeproc -f markdown -t html5 --csl ../templates/chicagomodified.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.html >> bash.log
 
-java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/XHTML2eruditV2.xsl -o:${GET[id]}.xml
+java  -cp /usr/local/vendor/saxon9he.jar:/usr/local/vendor/tagsoup-1.2.1.jar net.sf.saxon.Transform -x:org.ccil.cowan.tagsoup.Parser -s:${GET[id]}.html -xsl:../templates/XHTML52erudit.xsl -o:${GET[id]}.xml !indent=yes
 		echo "<pre>Getting ${GET[format]} file ready"
 		echo "</pre>"
 
@@ -543,8 +550,48 @@ java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/X
 
 		echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
 		;;
+	zip)   	
+
+		echo "<pre>Getting ${GET[format]} file ready"
+		echo "</pre>"
+
+		#Zip all files and move ZIP and PDF to export
+		echo "<pre>Getting ZIP file ready"
+		zip -r ${GET[id]}.zip .
+		echo "</pre>"
+		mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
+		mv ${GET[id]}.${GET[format]} /usr/local/apache2/htdocs/export/
+		#Clean folder
+		cd ..
+		rm -R ${GET[version]}
+
+		echo "<br>"
+
+		echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
+		;;
+	html5)   	
+		pandoc --standalone --verbose --filter pandoc-citeproc $toc -f markdown -t ${GET[format]} --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.html >> bash.log
+
+		echo "<pre>Getting ${GET[format]} file ready"
+		echo "</pre>"
+
+		#Zip all files and move ZIP and PDF to export
+		echo "<pre>Getting ZIP file ready"
+		zip -r ${GET[id]}.zip .
+		echo "</pre>"
+		mv ${GET[id]}.zip /usr/local/apache2/htdocs/export/
+		mv ${GET[id]}.html /usr/local/apache2/htdocs/export/
+		#Clean folder
+		cd ..
+		rm -R ${GET[version]}
+
+		echo "<br>"
+		echo "${GET[format]} : <a href='/export/${GET[id]}.html' target='_blank'>/export/${GET[id]}.html</a><br>"
+
+		echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
+		;;
 	*)   	
-		pandoc --standalone --verbose --filter pandoc-citeproc --table-of-contents -f markdown -t ${GET[format]} --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.${GET[format]} >> bash.log
+		pandoc --standalone --verbose --filter pandoc-citeproc $toc -f markdown -t ${GET[format]} --csl ../templates/${GET[bibstyle]}.csl ${GET[id]}.md ${GET[id]}.yaml -o ${GET[id]}.${GET[format]} >> bash.log
 
 		echo "<pre>Getting ${GET[format]} file ready"
 		echo "</pre>"
@@ -565,7 +612,6 @@ java  -jar /usr/local/vendor/saxon9he.jar -s:${GET[id]}.html -xsl:../templates/X
 		echo "ZIP : <a href='/export/${GET[id]}.zip' target='_blank'>/export/${GET[id]}.zip</a><br>"
 		;;
 esac
-
 
 
 # Unnecessary if the pdf is made directly without using tex file
@@ -606,7 +652,7 @@ Format:
 <select name=\"format\">
 <option value=\"pdf\">PDF</option>
 <option value=\"tex\">tex</option>
-<option value=\"html\">HTML</option>
+<option value=\"html5\">HTML</option>
 <option value=\"xml\">XML eruditArticle</option>
 <option value=\"odt\">odt</option>
 <option value=\"docx\">docx</option>
